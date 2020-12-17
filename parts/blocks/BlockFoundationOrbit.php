@@ -83,7 +83,7 @@ if (!empty($block['align'])) {
                             $activeClass = ' class="is-active"';
                         endif;
                         $bullets .= '<button' . $activeClass . ' data-slide="' . $dataSlide . '">';
-                        $bullets .= '<span class="show-for-sr">' . LockettsNumToOrdinalWord($dataSlide + 1) . ' slide details.</span>';
+                        $bullets .= '<span class="show-for-sr">' . tch_NumToOrdinalWord($dataSlide + 1) . ' slide details.</span>';
                         $bullets .= $extraSpan;
                         $bullets .= '</button>';
                         $dataSlide++;
