@@ -43,7 +43,7 @@
 			
 			<div class="off-canvas-content" data-off-canvas-content>
 				
-				<header class="header" role="banner">
+				<header class="header<?php if (get_page_template_slug() == 'page-dark.php') echo ' dark'?>" role="banner">
 							
 					 <!-- This navs will be applied to the topbar, above all content 
 						  To see additional nav styles, visit the /parts directory -->

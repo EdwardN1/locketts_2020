@@ -1,13 +1,11 @@
-<?php 
-/**
- * The template for displaying all pages
- *
- * This is the template that displays all pages by default.
- */
+<?php
+/*
+Template Name: Dark Header
+*/
 
 get_header(); ?>
 	
-	<div class="content light">
+	<div class="content">
 	
 		<div class="inner-content grid-x grid-margin-x">
 	

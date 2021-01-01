@@ -1,0 +1,22 @@
+header.header {
+  .top-bar {
+    ul {
+      li {
+        a {
+          color: $white;
+        }
+      }
+    }
+  }
+  &.dark {
+    .top-bar {
+      ul {
+        li {
+          a {
+            color: $black;
+          }
+        }
+      }
+    }
+  }
+}

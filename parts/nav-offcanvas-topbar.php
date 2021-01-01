@@ -4,6 +4,8 @@
  *
  * For more info: http://jointswp.com/docs/off-canvas-menu/
  */
+
+//get_theme_mod( 'secondary_logo_technicks_customizer_setting' )
 ?>
 
 <div class="top-bar" id="top-bar-menu">
@@ -12,16 +14,32 @@
             <div class="cell shrink">
                 <ul class="menu">
                     <?php
-                    if (has_custom_logo()) { ?>
-                        <li>
-                            <?php the_custom_logo(); ?>
-                        </li>
-                        <?php
-                    } else {
-                        ?>
-                        <li><a href="<?php echo home_url(); ?>" class="logo"><?php bloginfo('name'); ?></a></li>
-                        <?php
-                    }
+
+                    if (get_page_template_slug() == 'page-dark.php'):
+                        $sLogoURL = get_theme_mod('technicks_secondary_logo');
+                        if ($sLogoURL != '') { ?>
+                            <li>
+                                <a href="<?php echo home_url(); ?>" class="custom-logo-link" rel="home" aria-current="page">
+                                    <img width="300" height="21" src="<?php echo $sLogoURL;?>" class="custom-logo" alt="Lockett Bros Scotland"></a>
+                            </li>
+                            <?php
+                        } else {
+                            ?>
+                            <li><a href="<?php echo home_url(); ?>" class="logo"><?php bloginfo('name'); ?></a></li>
+                            <?php
+                        }
+                    else:
+                        if (has_custom_logo()) { ?>
+                            <li>
+                                <?php the_custom_logo(); ?>
+                            </li>
+                            <?php
+                        } else {
+                            ?>
+                            <li><a href="<?php echo home_url(); ?>" class="logo"><?php bloginfo('name'); ?></a></li>
+                            <?php
+                        }
+                    endif;
                     ?>
                 </ul>
             </div>
