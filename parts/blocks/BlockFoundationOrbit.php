@@ -43,7 +43,7 @@ if (!empty($block['align'])) {
         $infinite = get_field('infinite');
         $responds_to_swipe = get_field('responds_to_swipe');
         $pause_on_hover = get_field('pause_on_hover');
-        $data_options = ' ';
+        $data_options = ' data-anim-in-from-right="fade-in"  data-anim-out-to-right="fade-out" data-anim-in-from-left="fade-in" data-anim-out-to-left="fade-out" ';
         if($timer_delay != 5000) $data_options .= 'data-timer-delay="'.$timer_delay.'" ';
         if($auto_play != 1) $data_options .= 'data-auto-play="false" ';
         if($infinite != 1) $data_options .= 'data-infinite-wrap="false" ';
@@ -71,11 +71,29 @@ if (!empty($block['align'])) {
                     $image = get_sub_field('image');
                     $caption = get_sub_field('caption');
                     $link = get_sub_field('link');
+                    $add_caption = get_sub_field('add_caption');
+                    $position = get_sub_field('position');
+                    $caption_class='';
+                    if($position=='Top') $caption_class = ' position-top';
+                    if($position=='Top Left') $caption_class = ' position-top-left';
+                    if($position=='Bottom Left') $caption_class = ' position-bottom-left';
+                    if($position=='Top RIght') $caption_class = ' position-top-right';
+                    if($position=='Bottom Right') $caption_class = ' position-bottom-right';
+                    if($position=='Centre') $caption_class = ' position-centre';
+                    $add_link = get_sub_field('add_link');
                     if ($image) :
                         $slides .= '<li class="' . $activeClass . 'orbit-slide">';
                         $slides .= '<figure class="orbit-figure">';
-                        $slides .= '<img class="orbit-image" src="' . esc_url($image['url']) . '" alt="' . esc_attr($image['alt']) . '"';
-                        $slides .= '<figcaption class="orbit-caption">' . $caption . '</figcaption>';
+                        if(($add_link==1)&&($link!='')) {
+                            $slides .= '<a href="'.$link.'">';
+                            $slides .= '<img class="orbit-image" src="' . esc_url($image['url']) . '" alt="' . esc_attr($image['alt']) . '"/>';
+                            $slides .= '</a>';
+                        } else {
+                            $slides .= '<img class="orbit-image" src="' . esc_url($image['url']) . '" alt="' . esc_attr($image['alt']) . '"/>';
+                        }
+                        if(($add_caption==1)&&($caption!='')) {
+                            $slides .= '<figcaption class="orbit-caption'.$caption_class.'">' . $caption . '</figcaption>';
+                        }
                         $slides .= '</figure>';
                         $slides .= '</li>';
                         $extraSpan = '<span class="show-for-sr" data-slide-active-label>Current Slide</span>';

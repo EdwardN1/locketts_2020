@@ -30,11 +30,11 @@
 
 $tosca-zero: "TOSCA ZERO Copyright (c) 2009 by Billy Argel. All rights reserved.";
 
-.tosca-zero {
+.tosca-zero, .is-style-tosca-zero, .is-style-tosca-zero-uppercase {
   font-family: $tosca-zero;
 }
 
-.text-uppercase {
+.text-uppercase, .is-style-tosca-zero-uppercase {
   text-transform: uppercase;
 }
 
