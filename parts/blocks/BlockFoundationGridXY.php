@@ -79,6 +79,9 @@ $css_classes = get_field('css_classes');
                 while (have_rows('Columns')) : the_row();
 
                     $image = get_sub_field('image');
+                    $image_description = get_sub_field('image_description');
+                    $image_link = get_sub_field('image_link');
+                    $image_link_description = get_sub_field('image_link_description');
                     $video = get_sub_field('video');
                     $aspect_ratio = get_sub_field('aspect_ratio');
                     $global_size = get_sub_field('global_size');
@@ -108,8 +111,27 @@ $css_classes = get_field('css_classes');
                         $content .= '</div>';
                     }
                     if ($image) {
-                        $content = '<img src="' . esc_url($image['url']) . '" alt="' . esc_attr($image['alt']) . '"/>';
-
+                        $cellFooter = '';
+                        if(($image_description!='')) {
+                            $cellFooter .= '<div class="image-description"><div class="container">';
+                            $cellFooter .= '<span>'.$image_description.'</span>';
+                            if($image_link!='') {
+                               if($image_link_description=='') $image_link_description = $image_link;
+                                $cellFooter .= '<a href="'.$image_link.'">'.$image_link_description.'</a>';
+                            }
+                            $cellFooter .= '</div></div>';
+                        } else {
+                            if($image_link!='') {
+                                $cellFooter .= '<div class="image-description"><div class="container">';
+                                if($image_link_description=='') $image_link_description = $image_link;
+                                $cellFooter .= '<a href="'.$image_link.'">'.$image_link_description.'</a>';
+                                $cellFooter .= '</div></div>';
+                            }
+                        }
+                        $content = '<div class="cell-type-image">';
+                        $content .= '<img src="' . esc_url($image['url']) . '" alt="' . esc_attr($image['alt']) . '"/>';
+                        $content .= $cellFooter;
+                        $content .= '</div>';
                     }
 
                     $cell_classes = 'cell';
